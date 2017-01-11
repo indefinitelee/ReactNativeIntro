@@ -5,20 +5,32 @@ import {
   Text,
   View,
   TouchableHighlight,
+  StatusBar,
 } from 'react-native';
 
 export default class testcoolapp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: 'hi !'
+    };
+  }
 
   clickedme(){
-    alert("ouch");
+    this.setState({
+      message: "eww"
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this.clickedme} underlayColor={'transparent'}>
+      <StatusBar hidden/>
+        <TouchableHighlight onPress={this.clickedme.bind(this)} underlayColor={'transparent'}>
           <View style={styles.circle}>
-            <Text style={styles.inner}>Hi</Text>
+            <Text style={styles.inner}>
+              {this.state.message}
+            </Text>
           </View>
         </TouchableHighlight>
       </View>
