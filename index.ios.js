@@ -6,34 +6,22 @@ import {
   View,
   TouchableHighlight,
   StatusBar,
+  Navigator,
 } from 'react-native';
+import Login from './Login'
 
 export default class testcoolapp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      message: 'hi !'
-    };
-  }
 
-  clickedme(){
-    this.setState({
-      message: "eww"
-    })
+  renderScene(route, navigator) {
+    return <route.component navigator={navigator} props={route.passProps} />
   }
 
   render() {
     return (
-      <View style={styles.container}>
-      <StatusBar hidden/>
-        <TouchableHighlight onPress={this.clickedme.bind(this)} underlayColor={'transparent'}>
-          <View style={styles.circle}>
-            <Text style={styles.inner}>
-              {this.state.message}
-            </Text>
-          </View>
-        </TouchableHighlight>
-      </View>
+      <Navigator
+        initialRoute={ {component: Login} }
+        renderScene={this.renderScene}
+      />
     );
   }
 }
@@ -44,19 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rebeccapurple',
-  },
-  circle: {
-    backgroundColor: "red",
-    height: 200,
-    width: 200,
-    borderRadius: 100,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  inner: {
-    fontSize: 42,
-    color: "white",
-    fontWeight: '400',
   },
   welcome: {
     fontSize: 20,
