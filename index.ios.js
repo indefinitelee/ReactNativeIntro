@@ -3,14 +3,24 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight,
 } from 'react-native';
 
 export default class testcoolapp extends Component {
+
+  clickedme(){
+    alert("ouch");
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.circle}></View>
+        <TouchableHighlight onPress={this.clickedme} underlayColor={'transparent'}>
+          <View style={styles.circle}>
+            <Text style={styles.inner}>Hi</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -28,6 +38,13 @@ const styles = StyleSheet.create({
     height: 200,
     width: 200,
     borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  inner: {
+    fontSize: 42,
+    color: "white",
+    fontWeight: '400',
   },
   welcome: {
     fontSize: 20,
